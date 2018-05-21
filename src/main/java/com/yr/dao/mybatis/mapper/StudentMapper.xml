@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yr.dao.mybatis.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.yr.entry.Student">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="class_code" jdbcType="VARCHAR" property="classCode" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="home_tel" jdbcType="VARCHAR" property="homeTel" />
+    <result column="in_time" jdbcType="DATE" property="inTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="offer_time" jdbcType="TIMESTAMP" property="offerTime" />
+    <result column="offer_income" jdbcType="VARCHAR" property="offerIncome" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, code, class_code, sex,birth, age, tel, addr, home_tel, in_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yr_student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yr_student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yr.entry.Student">
+    insert into yr_student (id, name, code,year, 
+      class_code, sex, birth,age, 
+      tel, addr, home_tel, 
+      in_time, create_time,finish_time,offer_time,offer_income)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+     	#{year,jdbcType=VARCHAR},
+      #{classCode,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=TIMESTAMP},
+      #{age,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{homeTel,jdbcType=VARCHAR}, 
+      #{inTime,jdbcType=TIMESTAMP}, now(),#{finishTime,jdbcType=TIMESTAMP},
+      #{offerTime,jdbcType=TIMESTAMP},#{offerIncome,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yr.entry.Student">
+    insert into yr_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="classCode != null">
+        class_code,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="homeTel != null">
+        home_tel,
+      </if>
+      <if test="inTime != null">
+        in_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="classCode != null">
+        #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTel != null">
+        #{homeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null">
+        #{inTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yr.entry.Student">
+    update yr_student
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="classCode != null">
+        class_code = #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTel != null">
+        home_tel = #{homeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null">
+        in_time = #{inTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offerTime != null">
+        offer_time = #{offerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offerIncome != null">
+        offer_income = #{offerIncome,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yr.entry.Student">
+    update yr_student
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      class_code = #{classCode,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      home_tel = #{homeTel,jdbcType=VARCHAR},
+      in_time = #{inTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="Page_Where_Clause">
+    <where>
+     1=1
+      <if test="t.classCode != null and t.classCode != '' ">
+        and classCode = #{t.classCode,jdbcType=VARCHAR}
+      </if>
+      <if test="t.name != null and t.name != '' ">
+        and `name` = #{t.name,jdbcType=VARCHAR}
+      </if>
+      <if test="t.age != null and t.age != '' ">
+        and age = #{t.age,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByPage" parameterType="com.yr.entry.Page" resultMap="BaseResultMap">
+    select s.id, s.name, s.code, concat(c.year,c.name) as class_code,
+ 	s.sex,s.birth, s.tel, s.addr, s.home_tel, s.in_time, s.create_time,
+	s.finish_time,s.offer_time,s.offer_income
+ 	from yr_student s LEFT JOIN yr_clas c on s.class_code = c.code
+    <include refid="Page_Where_Clause" />
+    order by id desc
+    limit #{limitNum},#{pageSize} 
+  </select>
+</mapper>

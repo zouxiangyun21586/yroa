@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yr.dao.mybatis.ClasMapper">
+  <resultMap id="BaseResultMap" type="com.yr.entry.Clas">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="teacher_code" jdbcType="VARCHAR" property="teacherCode" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_finish" jdbcType="VARCHAR" property="isFinish" />
+    <result column="finish_time" jdbcType="DATE" property="finishTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, year, name, code, teacher_code,teacher_name, start_time, create_time, is_finish, finish_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yr_clas
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yr_clas
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yr.entry.Clas">
+    insert into yr_clas ( year, name, 
+      code, teacher_name,teacher_code, start_time, 
+      create_time, is_finish, finish_time
+      )
+    values ( #{year,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR},
+      #{teacherCode,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, 
+      now(), #{isFinish,jdbcType=VARCHAR}, #{finishTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yr.entry.Clas">
+    insert into yr_clas
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="teacherCode != null">
+        teacher_code,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isFinish != null">
+        is_finish,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+       <if test="teacherCode != null">
+        #{teacherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFinish != null">
+        #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yr.entry.Clas">
+    update yr_clas
+    <set>
+      <if test="year != null">
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCode != null">
+        teacher_code = #{teacherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFinish != null">
+        is_finish = #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yr.entry.Clas">
+    update yr_clas
+    set year = #{year,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_code = #{teacherCode,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_finish = #{isFinish,jdbcType=VARCHAR},
+      finish_time = #{finishTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="Page_Where_Clause">
+    <where>
+     1=1
+      <if test="t.id != null and t.id != '' ">
+        and id = #{t.id,jdbcType=INTEGER}
+      </if>
+      <if test="t.year != null and t.year != '' ">
+        and year = #{t.year,jdbcType=VARCHAR}
+      </if>
+      <if test="t.name != null and t.name != '' ">
+        and `name` = #{t.name,jdbcType=VARCHAR}
+      </if>
+      <if test="t.code != null and t.code != '' ">
+        and code = #{t.code,jdbcType=VARCHAR}
+      </if>
+      <if test="t.teacherName != null and t.teacherName != '' ">
+        and teacher_name = #{t.teacherName,jdbcType=VARCHAR}
+      </if>
+      <if test="t.teacherCode != null and t.teacherCode != '' ">
+        and teacher_code = #{t.teacherCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <select id="getList" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List" />
+    from yr_clas
+  </select>
+  <select id="selectByPage" parameterType="com.yr.entry.Page" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yr_clas
+    <include refid="Page_Where_Clause" />
+    order by year desc,is_finish asc
+    limit #{limitNum},#{pageSize} 
+  </select>
+</mapper>

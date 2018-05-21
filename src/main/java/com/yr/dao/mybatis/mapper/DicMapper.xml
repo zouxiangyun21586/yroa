@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yr.dao.mybatis.DicMapper">
+  <resultMap id="BaseResultMap" type="com.yr.entry.Dic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="keyw" jdbcType="VARCHAR" property="keyw" />
+    <result column="val" jdbcType="VARCHAR" property="val" />
+    <result column="p_key" jdbcType="VARCHAR" property="pKey" />
+    <result column="is_used" jdbcType="VARCHAR" property="isUsed" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, type_name, keyw, val, p_key, is_used
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yr_dic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yr_dic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yr.entry.Dic">
+    insert into yr_dic (id, type, type_name, 
+      keyw, val, p_key, is_used
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{keyw,jdbcType=VARCHAR}, #{val,jdbcType=VARCHAR}, #{pKey,jdbcType=VARCHAR}, #{isUsed,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yr.entry.Dic">
+    insert into yr_dic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="keyw != null">
+        keyw,
+      </if>
+      <if test="val != null">
+        val,
+      </if>
+      <if test="pKey != null">
+        p_key,
+      </if>
+      <if test="isUsed != null">
+        is_used,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyw != null">
+        #{keyw,jdbcType=VARCHAR},
+      </if>
+      <if test="val != null">
+        #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="pKey != null">
+        #{pKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null">
+        #{isUsed,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yr.entry.Dic">
+    update yr_dic
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyw != null">
+        keyw = #{keyw,jdbcType=VARCHAR},
+      </if>
+      <if test="val != null">
+        val = #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="pKey != null">
+        p_key = #{pKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yr.entry.Dic">
+    update yr_dic
+    set type = #{type,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      keyw = #{keyw,jdbcType=VARCHAR},
+      val = #{val,jdbcType=VARCHAR},
+      p_key = #{pKey,jdbcType=VARCHAR},
+      is_used = #{isUsed,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByType"  parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from yr_dic
+    <where>
+    	1 = 1
+	    <if test="type != null and type != '' ">
+	    	and type =  #{type,jdbcType=VARCHAR},
+	    </if>
+    </where>
+  </select>
+</mapper>

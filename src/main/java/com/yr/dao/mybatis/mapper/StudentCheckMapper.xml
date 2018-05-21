@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yr.dao.mybatis.StudentCheckMapper">
+  <resultMap id="BaseResultMap" type="com.yr.entry.StudentCheck">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="class_code" jdbcType="VARCHAR" property="classCode" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="student_code" jdbcType="VARCHAR" property="studentCode" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="check_time_code" jdbcType="VARCHAR" property="checkTimeCode" />
+    <result column="check_time_desc" jdbcType="VARCHAR" property="checkTimeDesc" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="rety_time" jdbcType="TIMESTAMP" property="retyTime" />
+    <result column="late_time" jdbcType="INTEGER" property="lateTime" />
+    <result column="is_late" jdbcType="INTEGER" property="isLate" />
+    <result column="is_note" jdbcType="INTEGER" property="isNote" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, class_code, class_name, student_code, student_name, check_time_code, check_time_desc, 
+    check_time, rety_time, late_time, is_late, is_note, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yr_student_check
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yr_student_check
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yr.entry.StudentCheck">
+    insert into yr_student_check (id, class_code, class_name, 
+      student_code, student_name, check_time_code, 
+      check_time_desc, check_time, rety_time, 
+      late_time, is_late, is_note, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{classCode,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, 
+      #{studentCode,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{checkTimeCode,jdbcType=VARCHAR}, 
+      #{checkTimeDesc,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{retyTime,jdbcType=TIMESTAMP}, 
+      #{lateTime,jdbcType=INTEGER}, #{isLate,jdbcType=INTEGER}, #{isNote,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yr.entry.StudentCheck">
+    insert into yr_student_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="classCode != null">
+        class_code,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="studentCode != null">
+        student_code,
+      </if>
+      <if test="studentName != null">
+        student_name,
+      </if>
+      <if test="checkTimeCode != null">
+        check_time_code,
+      </if>
+      <if test="checkTimeDesc != null">
+        check_time_desc,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="retyTime != null">
+        rety_time,
+      </if>
+      <if test="lateTime != null">
+        late_time,
+      </if>
+      <if test="isLate != null">
+        is_late,
+      </if>
+      <if test="isNote != null">
+        is_note,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classCode != null">
+        #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCode != null">
+        #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTimeCode != null">
+        #{checkTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTimeDesc != null">
+        #{checkTimeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retyTime != null">
+        #{retyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lateTime != null">
+        #{lateTime,jdbcType=INTEGER},
+      </if>
+      <if test="isLate != null">
+        #{isLate,jdbcType=INTEGER},
+      </if>
+      <if test="isNote != null">
+        #{isNote,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yr.entry.StudentCheck">
+    update yr_student_check
+    <set>
+      <if test="classCode != null">
+        class_code = #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCode != null">
+        student_code = #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null">
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTimeCode != null">
+        check_time_code = #{checkTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTimeDesc != null">
+        check_time_desc = #{checkTimeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retyTime != null">
+        rety_time = #{retyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lateTime != null">
+        late_time = #{lateTime,jdbcType=INTEGER},
+      </if>
+      <if test="isLate != null">
+        is_late = #{isLate,jdbcType=INTEGER},
+      </if>
+      <if test="isNote != null">
+        is_note = #{isNote,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yr.entry.StudentCheck">
+    update yr_student_check
+    set class_code = #{classCode,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      student_code = #{studentCode,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      check_time_code = #{checkTimeCode,jdbcType=VARCHAR},
+      check_time_desc = #{checkTimeDesc,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      rety_time = #{retyTime,jdbcType=TIMESTAMP},
+      late_time = #{lateTime,jdbcType=INTEGER},
+      is_late = #{isLate,jdbcType=INTEGER},
+      is_note = #{isNote,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

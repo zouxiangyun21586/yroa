@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender"> <!-- 将日志输出到控制台 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p [%t] %c.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="logfile" class="org.apache.log4j.DailyRollingFileAppender"> <!-- 总日志文件, name自定义    所有级别的日志都会记录到这个文件 -->
+		<param name="File" value="/logs/yroa/logs/log-all.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="2000KB"/> <!-- 当日志文件大于2000k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p][%c] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DEBUG" class="org.apache.log4j.DailyRollingFileAppender"> <!--  name自定义   -->
+		<param name="File" value="/logs/yroa/logs/log-debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="500KB"/> <!-- 当日志文件大于500k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p][%c.%-t() %L] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">  <!-- 配置记录日志的级别   -->
+			<param name="LevelMin" value="DEBUG" /> <!-- 记录级别,记录debug  表示本文件最小级别记录DEBUG, -->
+			<param name="LevelMax" value="DEBUG" /> <!-- 最大级别记录DEBUG, 那么本文件也就只记DEBUG了 -->
+		</filter>
+	</appender>
+
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender"><!--  name自定义   -->
+		<param name="File" value="/logs/yroa/logs/log-info.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="500KB"/> <!-- 当日志文件大于500k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p][%c.%-t() %L] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" /><!-- 配置记录日志的级别   记录INFO-->
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender"><!--  name自定义   -->
+		<param name="File" value="/logs/yroa/logs/log-warn.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="500KB"/> <!-- 当日志文件大于500k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p][%c.%-t() %L] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" /><!-- 配置记录日志的级别   记录WARN-->
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender"><!--  name自定义   -->
+		<param name="File" value="/logs/yroa/logs/log-error.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="500KB"/> <!-- 当日志文件大于500k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd hh:mm:ss.SSS} [%p][%c.%-t() %L] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" /><!-- 配置记录日志的级别   记录ERROR-->
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+	
+	<appender name="FATAL" class="org.apache.log4j.DailyRollingFileAppender"><!--  name自定义   -->
+		<param name="File" value="/logs/yroa/logs/log-fatal.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="MaxFileSize" value="500KB"/> <!-- 当日志文件大于500k时，自动备份，形式为server.log.1 -->
+    	<param name="MaxBackupIndex" value="5"/> <!-- 当server.log.*文件超过5个时，删除最老的一个 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd hh:mm:ss.SSS} [%p][%c.%-t() %L] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="FATAL" /><!-- 配置记录日志的级别   记录FATAL-->
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+	 
+	<category name="com.yr.dao" additivity="true">  
+	<!-- 表示将包 com.test1 下只记录的ERROR和以上的日志,这里只配置了FATAL就只输出FATAL
+		注意additivity  true和false不要和root中的冲突出
+		-->
+		<level value="DEBUG" />
+		<appender-ref ref="DEBUG" />
+	</category>  
+	
+	<root>
+		<level value="console" />
+		<appender-ref ref="console" />
+		<appender-ref ref="logfile" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="FATAL" />
+	</root>
+
+</log4j:configuration>

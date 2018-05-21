@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	<!-- 如果需要用<mvc:view-controller>,那么一定要加上<mvc:annotation-driven />,否则除<mvc:view-controller>配置有效外,其他的url都为404 -->
+	<mvc:view-controller path="/login" view-name="login" />
+	<mvc:view-controller path="/tree" view-name="tree" />
+	<mvc:view-controller path="/main" view-name="main" />
+	<mvc:view-controller path="/loggedout" view-name="loggedout" />
+	<mvc:view-controller path="/timeout" view-name="timeout" />
+	<mvc:view-controller path="/d" view-name="d" />
+	
+	<!-- account -->
+	<mvc:view-controller path="/sys/account/add" view-name="/sys/account/add"/>
+	<mvc:view-controller path="/sys/account/list" view-name="/sys/account/list"/>
+	
+	<!-- role -->
+	<mvc:view-controller path="/sys/role/list" view-name="/sys/role/list"/>
+	<mvc:view-controller path="/sys/role/add" view-name="/sys/role/add"/>
+	
+	<!-- powers -->
+	<mvc:view-controller path="/sys/powers/list" view-name="/sys/powers/list"/>
+	<mvc:view-controller path="/sys/powers/add" view-name="/sys/powers/add"/>
+	
+	<!-- log -->
+	<mvc:view-controller path="/sys/log/list" view-name="/sys/log/list"/>
+	<mvc:view-controller path="/sys/log/add" view-name="/sys/log/add"/>
+	
+	<!-- book -->
+	<mvc:view-controller path="/library/book/list" view-name="/library/book/list"/>
+	<mvc:view-controller path="/library/book/add" view-name="/library/book/add"/>
+	
+	<!-- borrower -->
+	<mvc:view-controller path="/inout/borrower/list" view-name="/inout/borrower/list"/>
+	<mvc:view-controller path="/inout/borrower/add" view-name="/inout/borrower/add"/>
+	
+	<!-- borrow -->
+	<mvc:view-controller path="/inout/borrowBook/list" view-name="/inout/borrowBook/list"/>
+	<mvc:view-controller path="/inout/borrowBook/add" view-name="/inout/borrowBook/add"/>
+	
+	<!-- deposit -->
+	<mvc:view-controller path="/finance/deposit/list" view-name="/finance/deposit/list"/>
+	<mvc:view-controller path="/finance/deposit/add" view-name="/finance/deposit/add"/>
+	
+	<!-- damage -->
+	<mvc:view-controller path="/finance/damage/list" view-name="/finance/damage/list"/>
+	<mvc:view-controller path="/finance/damage/add" view-name="/finance/damage/add"/>
+	
+	<!-- overdueFine -->
+	<mvc:view-controller path="/finance/overdueFine/list" view-name="/finance/overdueFine/list"/>
+	<mvc:view-controller path="/finance/overdueFine/add" view-name="/finance/overdueFine/add"/>
+	
+	<!-- returnBook -->
+	<mvc:view-controller path="/inout/returnBook/list" view-name="/inout/returnBook/list"/>
+	<mvc:view-controller path="/inout/returnBook/add" view-name="/inout/returnBook/add"/>
+	
+</beans>

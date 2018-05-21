@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="E:\oxygen-workspace\yroa\WebContent\WEB-INF\lib\mysql-connector-java-5.1.39-bin.jar" />
+	<context id="context2" targetRuntime="MyBatis3">
+		<commentGenerator>
+            <!-- 抑制警告 -->
+            <property name="suppressTypeWarnings" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+            <!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/yroa" 
+			driverClass="com.mysql.jdbc.Driver"
+			password="root" userId="root" />
+		<javaModelGenerator targetPackage="com.yr.entry" 
+			targetProject="yroa\src\java">
+			<property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.yr.dao.mybatis.mapper"
+			targetProject="yroa\src\java">
+			 <property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.yr.dao.mybatis"
+			targetProject="yroa\src\java" type="XMLMAPPER">
+			 <property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<table schema="general" tableName="yr_audit" domainObjectName="Audit" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_leave" domainObjectName="Leave" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_account" domainObjectName="Account" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_check_time" domainObjectName="CheckTime" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_clas" domainObjectName="Clas" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_dic" domainObjectName="Dic" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_student" domainObjectName="Student" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_student_check" domainObjectName="StudentCheck" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+		<table schema="general" tableName="yr_teacher" domainObjectName="Teacher" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false" 
+			selectByExampleQueryId="false" />
+	</context>
+</generatorConfiguration>
